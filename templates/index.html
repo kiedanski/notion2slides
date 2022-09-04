@@ -1,0 +1,42 @@
+<html>
+
+<form action="/login" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="database_id">Database ID</label>
+        <input type="text" id="database_id" name="database_id">
+    </div>
+    <div class="form-group">
+        <label for="notion_token">Notion Token</label>
+        <input type="password" id="notion_token" name="notion_token" minlength="8" required>
+    </div>
+    <button id="login" type='submit' class="btn btn-primary">Upload</button>
+
+    <div>
+        <h1>How to set up?</h1>
+        <ul>
+            <li>Generate a new <a href="https://www.notion.so/my-integrations">Notion Token</a> and save it for later
+            </li>
+            <li>Crate a new database. Each element of the database will be a slide</li>
+            <li>Get the Database Id:
+                https://stackoverflow.com/questions/67728038/where-to-find-database-id-for-my-database-in-notion</li>
+            <li>Login with your token + database id.</li>
+            <li>Select the desired slide</li>
+            <li>Profit!</li>
+        </ul>
+    </div>
+    <div>
+        <h1>
+            Supported content
+        </h1>
+        <p>
+            This is a sample notion page used for slides <a
+                href="https://www.notion.so/kiedanski/Public-Slide-ebcb424629a54d08937c55cb117815a2">Example</a>
+        </p>
+        <ul>
+            <li>Images</li>
+            <li>Code</li>
+            <li>Lists</li>
+        </ul>
+    </div>
+
+</html>

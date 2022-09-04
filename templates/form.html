@@ -1,0 +1,22 @@
+<html>
+
+<head>
+    <title>Item Details</title>
+</head>
+
+<body>
+    <form action="/slide" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="slide">Choose:</label>
+            <select id="slide_id" name="slide_id">
+                {% for k, v in slides.items() %}
+                <option value={{v}}>{{k}}</option>
+                <!-- The choices are correctly displayed in the dropdown menu -->
+                {% endfor %}
+            </select>
+        </div>
+        <button id="slide" type='submit' class="btn btn-primary">Upload</button>
+    </form>
+</body>
+
+</html>

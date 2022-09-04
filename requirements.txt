@@ -1,0 +1,5 @@
+fastapi
+Jinja2
+mangum
+notion-client
+python-multipart

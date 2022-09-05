@@ -17,31 +17,21 @@ def get_slide(slide_id: str, client):
     for block in data["results"]:
         block_type = block["type"]
 
+        if block_type != BLT and current_list is not None:
+            current_list = None
+
         if block_type == H1:
 
             h1 = block[H1]["rich_text"][0]["plain_text"]
-            obj = {"type": "slide", "content": [], "name": h1}
-            if current_slide is None:
-                current_slide = obj
-            elif current_slide is not None:
-                slides.append(current_slide)
-                current_slide = obj
-
-            current_list = None  # reset list
-            current_column = None
+            current_slide = {"type": "slide", "content": [], "name": h1}
+            slides.append(current_slide)
 
         if block_type == H2:
-            obj = {
+            current_column = {
                 "type": "column",
                 "content": [],
             }
-            if current_column is None:
-                current_column = obj
-            elif current_column is not None:
-                current_slide["content"].append(current_column)
-                current_column = obj
-
-            current_list = None  # reset list
+            current_slide["content"].append(current_column)
 
         if block_type == IMG:
             url = block["image"]["external"]["url"]
@@ -51,8 +41,6 @@ def get_slide(slide_id: str, client):
                 current_column["content"].append(obj)
             elif current_slide is not None:
                 current_slide["content"].append(obj)
-
-            current_list = None  # reset list
 
         if block_type == BLT:
             text = block["bulleted_list_item"]["rich_text"][0]["plain_text"]
@@ -80,17 +68,15 @@ def get_slide(slide_id: str, client):
             elif current_slide is not None:
                 current_slide["content"].append(obj)
 
-            current_list = None
-
-    if current_column is not None:
-        current_slide["content"].append(current_column)
-    slides.append(current_slide)
+    with open("templates/style.css", "r") as fh:
+        style = fh.read()
 
     with open("templates/revealjs.html", "r") as fh:
         html = fh.read()
         slides_html = "\n".join(render_slide(s) for s in slides)
-        print(slides_html)
         html = html.replace("<!--slides_here>-->", slides_html)
+        html = html.replace("/*style_here*/", style)
+        print(html)
 
     return html
 
@@ -125,17 +111,29 @@ def render_column(obj):
 
 def render_slide(obj):
 
-    html = "<section>"
-    html += f"<h1>{obj['name']}</h1>\n"
+    html = """
+    <section> 
+    <div class="title">
+    {title}
+    </div>
+    <div class="content">
+    {content}
+    </div>
+    </section>
+    """
+
+    # html = "<section>"
+    # html += f"<div class=\"title\"><a class=\"title-h1\">{obj['name']}</a></div>\n"
+    content = ""
     if obj["content"][0]["type"] == "column":
-        html += '<div class="container">'
+        content += '<div class="container">'
     for elem in obj["content"]:
         body = render[elem["type"]](elem)
-        html += body
-
+        content += body
     if obj["content"][0]["type"] == "column":
-        html += "</div>"
-    html += "</section>"
+        content += "</div>"
+
+    html = html.format(title=obj["name"], content=content)
     return html
 
 

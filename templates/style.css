@@ -1,0 +1,28 @@
+body { font-size: 20pt; }
+
+
+.container {
+    display: flex;
+    margin: 2%;
+}
+
+.col {
+    flex: 1;
+    margin: 1%;
+    transform: translateY(20%);
+}
+
+
+.my-image {
+    width: 400px;
+    height: 400px;
+    object-fit: contain;
+}
+
+.content {
+    margin: 2%;
+}
+
+.title {
+    font-size: 30pt !important;
+}

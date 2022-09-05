@@ -8,7 +8,7 @@
     <title>Sample RevealJS with CDN</title>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@3.7.0/css/reveal.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@3.7.0/css/theme/simple.css">
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@3.7.0/css/theme/simple.css"> -->
     <!-- Theme used for syntax highlighting of code -->
     <!-- <link rel="stylesheet" href="lib/css/zenburn.css"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/zenburn.min.css">
@@ -23,19 +23,7 @@
     </script>
 
     <style>
-        .container {
-            display: flex;
-        }
-
-        .col {
-            flex: 1;
-        }
-
-        .my-image {
-            width: 400px;
-            height: 400px;
-            object-fit: contain;
-        }
+        /*style_here*/
     </style>
 </head>
 
@@ -118,6 +106,8 @@
             // next slide, disabled when set to 0, this value can be overwritten
             // by using a data-autoslide attribute on your slides
             autoSlide: 0,
+
+            disableLayout: true,
 
             // Stop auto-sliding after user input
             autoSlideStoppable: true,

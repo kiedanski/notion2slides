@@ -26,3 +26,19 @@ body { font-size: 20pt; }
 .title {
     font-size: 30pt !important;
 }
+
+.c-italic {
+    font-style: italic !important;
+}
+
+.c-bold {
+    font-weight: bold !important;
+}
+
+.c-orange_background {
+    background-color: orange !important;
+}
+
+.c-green {
+    color: green !important;
+}

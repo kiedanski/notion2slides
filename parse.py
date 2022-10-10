@@ -132,19 +132,22 @@ def proc_rich_text(text_list):
                     cls += f" c-{k}"
             else:
                 if v != "default":
-                    cls += f" c-{v}"
+                    cls += f" c-{v.replace('_', '-')}"
 
+        t = el["plain_text"]
+        if el["annotations"]["strikethrough"]:
+            t = f"<s>{t}</s>"
         if cls != "":
-            t = f'<a class={cls}>{el["plain_text"]}</a>'
+            t = f"<a class='{cls}'>{t}</a>"
         else:
-            t = f'<a>{el["plain_text"]}</a>'
+            t = f"<a>{t}</a>"
         text += t
     return text
 
 
 # %%
 def render_list(obj):
-    html = "<ul>\n"
+    html = "<ul class='my-list'>\n"
     for elem in obj["content"]:
         html += f'<li class="fragment fade-in-then-semi-out">{elem}</li>\n'
     html += "</ul>\n"

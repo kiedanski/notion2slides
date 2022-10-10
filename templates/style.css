@@ -3,13 +3,23 @@ body { font-size: 20pt; }
 
 .container {
     display: flex;
-    margin: 2%;
+    margin: 1ex !important;
 }
 
 .col {
+    justify-content: space-around !important;
     flex: 1;
-    margin: 1%;
+    margin: 1ex !important;
     transform: translateY(20%);
+}
+
+.col-name {
+    display: flex;
+}
+
+.my-list {
+    display: flex;
+    flex-direction: column;
 }
 
 
@@ -20,7 +30,7 @@ body { font-size: 20pt; }
 }
 
 .content {
-    margin: 2%;
+    margin: 2ex !important;
 }
 
 .title {
@@ -35,10 +45,31 @@ body { font-size: 20pt; }
     font-weight: bold !important;
 }
 
-.c-orange_background {
+.c-orange-background {
     background-color: orange !important;
+}
+
+.c-green-background {
+    background-color: green !important;
+}
+
+.c-red-background {
+    background-color: red !important;
+}
+
+.c-blue-background {
+    background-color: blue !important;
 }
 
 .c-green {
     color: green !important;
+}
+.c-blue {
+    color: blue !important;
+}
+.c-orange {
+    color: orange !important;
+}
+.c-red {
+    color: red !important;
 }
